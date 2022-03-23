@@ -81,5 +81,5 @@ void Date(char a[]){
     msec=(sumSec%8640)/86.4;
     
     cout << mhour << ':' << mmin << ':' << msec << ' ' << mday << '.' << mmon << '.' << myear << endl;
-    system("pause");
+    //测试上传GitHub
 }
