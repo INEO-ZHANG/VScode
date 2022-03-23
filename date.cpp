@@ -54,27 +54,32 @@ void Date(char a[]){
     nmon = atoi(mon);
     nyear = atoi(year);
     //cout << nhour << ':' << nmin << ':' << nsec << ' ' << nday << '.' << nmon << '.' << nyear << endl;
-    long long sumSec = 0;
+    long long sumDay = 0;
     long long month[12] = { 0,31,59,90,120,151,181,212,243,273,304,334 };
     long long month1[12] = { 0,31,60,91,121,152,182,213,244,274,305,335 };
-    if((nyear-2000)%4==0){  //闰年
-        sumSec = ((nyear - 2000) / 4) * 126230400  + month1[(nmon - 1)] * 86400 + (nday - 1) * 86400 + nhour * 3600 + nmin * 60 + nsec;
+    if(((nyear%4==0)&&(nyear%100!=0))||nyear%400==0){  //闰年
+        sumDay = month1[(nmon - 1)]  + (nday - 1) ;
     }
-    else if ((nyear - 2000) % 4 == 1) {                  //平年1
-        sumSec = ((nyear - 2000) / 4) * 126230400 + 31622400 + month[(nmon - 1)] * 86400 + (nday - 1) * 86400 + nhour * 3600 + nmin * 60 + nsec;
+    else{
+        sumDay = month[(nmon-1)] + (nday - 1);
     }
-    else if ((nyear - 2000) % 4 == 2) {                  //平年2
-        sumSec = ((nyear - 2000) / 4) * 126230400 + 63158400 + month[(nmon - 1)] * 86400 + (nday - 1) * 86400 + nhour * 3600 + nmin * 60 + nsec;
-    }
-    else {                  //平年3
-        sumSec = ((nyear - 2000) / 4) * 126230400 + 94694400 + month[(nmon - 1)] * 86400 + (nday - 1) * 86400 + nhour * 3600 + nmin * 60 + nsec;
+    
+    for(i=2000;i<nyear;i++){
+        if(((i%4==0)&&(i%100!=0))||i%400==0)
+        sumDay+=366;
+        else
+        sumDay+=365;
     }
     int mhour, mmin, msec, mday, mmon, myear;
-    myear = sumSec / 100000000;
-    mmon = ((sumSec % 100000000) / 10000000) + 1;
-    mday = (((sumSec % 100000000) % 10000000) / 100000) + 1;
-    mhour = (((sumSec % 100000000) % 10000000) % 100000) / 10000;
-    mmin = ((((sumSec % 100000000) % 10000000) % 100000) % 10000) / 100;
-    msec = ((((sumSec % 100000000) % 10000000) % 100000) % 10000) % 100;
+    myear = sumDay / 1000;
+    mmon = ((sumDay % 1000) / 100) + 1;
+    mday = ((sumDay % 1000) % 100) + 1;
+    long long sumSec=0;
+    sumSec=nhour*3600+nmin*60+nsec;
+    mhour=sumSec/8640;
+    mmin=(sumSec%8640)/86.4;
+    msec=(sumSec%8640)/86.4;
+    
     cout << mhour << ':' << mmin << ':' << msec << ' ' << mday << '.' << mmon << '.' << myear << endl;
+    system("pause");
 }
