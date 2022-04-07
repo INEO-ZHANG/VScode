@@ -37,7 +37,7 @@ int main(){
     //printf("%d",max);
     j=0;
     while(n--){
-        for(i=0;i<max-pointpos[j];i++){
+        for(i=0;i<max-pointpos[j];i++){//
             printf(" ");
         }
         printf("%s\n",s[j]);
