@@ -4,15 +4,17 @@
 #include<math.h>
 #define MAX 100
 
-void move(char *s,int pos);
 int main(){
     int n ,i=0 ,j=0;
     scanf("%d",&n);
+    getchar();
     int N=n;
     int pointpos[10000];
     char s[10000][MAX]={0};
     while(n--){
         scanf("%s",s[i]);
+        i++;
+        getchar();
         //printf(" %s",s[i]);
     }
     for(i=0;i<N;i++){       //找出各个数字小数点的位置，储存在pointpos中
@@ -32,20 +34,14 @@ int main(){
             max=pointpos[i];
     }
     n=N;
+    //printf("%d",max);
+    j=0;
     while(n--){
-        move(s[n],max-pointpos[n]);
+        for(i=0;i<max-pointpos[j];i++){//
+            printf(" ");
+        }
+        printf("%s\n",s[j]);
+        j++;
     }
-    
     return 0;
-}
-
-void move(char *s,int pos){
-    int i=0;
-    int len=strlen(s);
-    while(len--){
-        s[len+pos]=s[len];
-    }
-    for(i=0;i<pos;i++){
-        s[i]=0;
-    }
 }
