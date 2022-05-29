@@ -5,6 +5,17 @@
 int main(){
     char s[MAX][10],t[MAX][10];
     int i=0,j=0;
+<<<<<<< HEAD
+    while(scanf("%s%s",s[i],t[i])){
+        if(s[i][0]=='\n'||s[i][0]=='\0')break;
+        printf("%s %s",s[i],t[i]);
+        i++;
+    }    
+    while(i--){
+        printf("%s%s",s[i],t[i]);
+    }
+}
+=======
    
     /*while(i<MAX){
     while((s[i][j]=getchar())!=' '){
@@ -80,3 +91,4 @@ int main(){
         flag=0;
     }
 }
+>>>>>>> 2875718e46fb700784adc0f2dfad7b38d5c63a3a

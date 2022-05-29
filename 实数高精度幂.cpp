@@ -1,0 +1,63 @@
+#include<stdio.h>
+#include<string.h>
+int a[5000],b[5000],temp[5000];
+char s[5000];
+int main()
+{
+	int i,j,k,len,point,c,len2,flag;
+	while(scanf("%s%d",s,&c)!=EOF)
+	{
+		point=flag=0;
+		len=strlen(s);
+		for(i=0;s[i]!='\0';i++)
+		{
+			if(s[i]=='.')
+			{
+				flag=1;//判断有无小数点
+				break;
+			}	
+			point++;	
+		}
+		if(flag==1)
+			len--;//去掉小数点之后的长度
+		for(j=i;s[j]!='\0';j++)
+			s[j]=s[j+1];//从小数点开始把后面的数依次向前移动一位
+		point=len-point;//小数点后有几位数	
+		point=point*c;//最终小数部分的位数 
+		k=0;
+		for(i=len-1;i>=0;i--)
+			a[k++]=s[i]-'0';//逆序存储
+		memset(b,0,sizeof(b));
+		b[0]=1;
+		len2=1;//每次结果的长度
+		for(i=1;i<=c;i++)
+		{
+			memset(temp,0,sizeof(temp));//存完一次结果之后，下一次用之前的清零
+			for(j=0;j<len;j++)
+				for(k=0;k<len2;k++)
+					temp[k+j]+=b[k]*a[j];
+			for(j=0;j<len+len2;j++)
+			{
+				temp[j+1]+=temp[j]/10;
+				temp[j]=temp[j]%10;
+			}
+			memcpy(b,temp,sizeof(temp));
+			len2+=len;
+		}
+		while(b[len2]==0)//去除前导零
+			len2--;
+		for(i=len2;i>=point;i--)//逆序输出整数部分
+			printf("%d",b[i]);
+		for(i=0;i<point;i++)//判断小数部分是否为零
+			if(b[i]!=0)
+				break;
+		if(i<point)//有小数部分
+		{
+			printf(".");
+			for(j=point-1;j>=i;j--)//逆序输出小数部分
+				printf("%d",b[j]);
+		}
+		printf("\n");
+	}
+	return 0;
+}
