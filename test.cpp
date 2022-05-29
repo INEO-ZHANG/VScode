@@ -1,13 +1,31 @@
+#include <iostream> 
 #include<stdio.h>
-#include<string>
-#include<cstring>
-
-#define MAX 1000
-
+#include<string.h>
+#include<vector>
+#include<fstream>
+using namespace std;
 int main(){
-    char *pdest;
-    char str[]="carton",str1[]="carton";
-    pdest=strstr(str,str1);
-    int l=pdest-str+1;
-    printf("%d",l);
+    vector<vector<int> > S;
+    vector<int> s;
+    fstream fin;
+    fin.open("data/input00.txt",ios::in);
+    if(!fin.is_open()){
+        cout<<"cannot open the file!"<<endl;
+        exit(1);
+    }
+    for(int i=0;i<5;i++){
+        for(int j=0;j<5;j++){
+            int temp;
+            fin>>temp;
+            s.push_back(temp);
+        }
+        S.push_back(s);
+        s.clear();
+    }
+    for(int i=0;i<5;i++){
+        for(int j=0;j<5;j++){
+            cout<<S[i][j]<<" ";
+        }
+        cout<<endl;
+    }
 }
