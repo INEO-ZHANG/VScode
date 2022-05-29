@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-#include <iostream> 
-=======
-<<<<<<< HEAD
 #include<iostream>
 using namespace std;
 
