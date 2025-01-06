@@ -1,6 +1,16 @@
-<<<<<<< HEAD
-/*.exe
-=======
-*.exe
->>>>>>> de73c1f472d548a48aa3c941aac1017d723dad39
-*.txt
+# 忽略一切文件
+*
+# 除了 .gitignore
+!.gitignore
+# 除了目录
+!*/
+# .cpp
+!*.cpp
+# .c
+!*.c
+# .h
+!*.h
+# Makefile
+!Makefile*
+# 忽略 settings.json
+settings.json
